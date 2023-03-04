@@ -1,2 +1,4 @@
 node_modules/
 .next/
+.vscode/
+next-env.d.ts
