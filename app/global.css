@@ -1,0 +1,13 @@
+body {
+    background-color: #121212;
+    color: #ffffff;
+    opacity: 0.87;
+}
+
+a {
+    color: #a6a6ff
+}
+
+.a:visited {
+    color: #9d61d6;
+}
