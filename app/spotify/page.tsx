@@ -1,6 +1,6 @@
 import { PlaylistRootObject } from "../../lib/types";
 
-export async function getData() {
+async function getData() {
   const res = await fetch(
     `https://api.spotify.com/v1/users/${process.env.SPOTIFY_USER_ID}/playlists`,
     {
@@ -9,12 +9,20 @@ export async function getData() {
       },
     }
   );
+
+  if (!res.ok) return null;
+
   const json: PlaylistRootObject = await res.json();
   return json;
 }
 
 export default async function Page() {
   const data = await getData();
+
+  if (!data) {
+    return <>Error</>;
+  }
+
   return (
     <>
       <h1>spotify</h1>

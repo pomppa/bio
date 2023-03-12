@@ -1,15 +1,24 @@
 import { TopTracksRootObject } from "../../../lib/topTrackTypes";
-export async function getData() {
+
+async function getData() {
   const res = await fetch("https://api.spotify.com/v1/me/top/tracks", {
     headers: {
       Authorization: "Bearer " + process.env.SPOTIFY_ACCESS_TOKEN,
     },
   });
+
+  if (!res.ok) return null;
+
   const json = await res.json();
   return json;
 }
 export default async function Page() {
   const data: TopTracksRootObject = await getData();
+
+  if (!data) {
+    return <>Error</>;
+  }
+
   return (
     <>
       <h1>spotify top tracks</h1>
