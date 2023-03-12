@@ -6,8 +6,8 @@ export async function GET(request: NextRequest) {
 
   const urlencoded = new URLSearchParams();
   urlencoded.append("grant_type", "authorization_code");
-  urlencoded.append("code", code);
-  urlencoded.append("redirect_uri", process.env.SPOTIFY_REDIRECT_URI);
+  urlencoded.append("code", code as string);
+  urlencoded.append("redirect_uri", process.env.SPOTIFY_REDIRECT_URI as string);
 
   const res = await fetch("https://accounts.spotify.com/api/token", {
     method: "POST",
