@@ -18,6 +18,6 @@ export async function GET(request: Request) {
 
   const json = await res.json();
   process.env.SPOTIFY_ACCESS_TOKEN = json.access_token;
-
+  console.log("refreshed token, if there was something to refresh");
   return NextResponse.json({ refreshed: "ok" });
 }
