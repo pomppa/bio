@@ -3,7 +3,10 @@ import { NextResponse } from "next/server";
 export async function GET(request: Request) {
   const urlencoded = new URLSearchParams();
   urlencoded.append("grant_type", "refresh_token");
-  urlencoded.append("refresh_token", process.env.SPOTIFY_REFRESH_TOKEN);
+  urlencoded.append(
+    "refresh_token",
+    process.env.SPOTIFY_REFRESH_TOKEN as string
+  );
 
   const res = await fetch("https://accounts.spotify.com/api/token", {
     method: "POST",
