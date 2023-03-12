@@ -12,6 +12,7 @@ export async function getData() {
   const json: PlaylistRootObject = await res.json();
   return json;
 }
+
 export default async function Page() {
   const data = await getData();
   return (
@@ -22,7 +23,7 @@ export default async function Page() {
         return (
           <>
             <ul>
-              <li>
+              <li key={x.id}>
                 <a href={x.external_urls.spotify}>{x.external_urls.spotify}</a>
               </li>
             </ul>
