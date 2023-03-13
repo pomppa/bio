@@ -23,7 +23,7 @@ export async function GET(request: Request) {
       spotifyAccessToken: json.access_token,
       spotifyRefreshToken: keys?.spotifyRefreshToken,
     });
-    return NextResponse.json({ refreshed: "ok" });
+    return NextResponse.json({ refreshed: "ok", token: json.access_token });
   }
   //todo maybe wise to check why it failed in the first place
   return NextResponse.json({ refreshed: "failed", error: res.status });
