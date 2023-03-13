@@ -18,9 +18,12 @@ export async function GET(request: Request) {
       ).toString("base64")}`,
     },
   });
-
-  const json = await res.json();
-  process.env.SPOTIFY_ACCESS_TOKEN = json.access_token;
-  console.log("refreshed token, if there was something to refresh");
-  return NextResponse.json({ refreshed: "ok" });
+  if (res.ok) {
+    const json = await res.json();
+    process.env.SPOTIFY_ACCESS_TOKEN = json.access_token;
+    console.log("refreshed token");
+    return NextResponse.json({ refreshed: "ok" });
+  }
+  //todo maybe wise to check why it failed in the first place
+  return NextResponse.json({ refreshed: "failed" });
 }

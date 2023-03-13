@@ -20,9 +20,12 @@ export async function GET(request: NextRequest) {
     },
   });
 
-  const json = await res.json();
-  process.env.SPOTIFY_ACCESS_TOKEN = json.access_token;
-  process.env.SPOTIFY_REFRESH_TOKEN = json.refresh_token;
+  if (res.ok) {
+    const json = await res.json();
+    process.env.SPOTIFY_ACCESS_TOKEN = json.access_token;
+    process.env.SPOTIFY_REFRESH_TOKEN = json.refresh_token;
+    return NextResponse.json({ callback: "ok" });
+  }
 
-  return NextResponse.json({ callback: "ok" });
+  return NextResponse.json({ callback: "failed" });
 }
