@@ -52,26 +52,3 @@ export interface PlaylistRootObject {
   previous?: any;
   total: number;
 }
-
-export interface SpotifyTokensForAWS {
-  spotifyRefreshToken: string;
-  spotifyAccessToken: string;
-}
-
-export interface BioPartitionKey {
-  S: string;
-}
-
-export interface SPOTIFYREFRESHTOKEN {
-  S: string;
-}
-
-export interface SPOTIFYACCESSTOKEN {
-  S: string;
-}
-
-export interface SpotifyTokensFromAWS {
-  bioPartitionKey: BioPartitionKey;
-  SPOTIFY_REFRESH_TOKEN: SPOTIFYREFRESHTOKEN;
-  SPOTIFY_ACCESS_TOKEN: SPOTIFYACCESSTOKEN;
-}
