@@ -1,4 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
+import { postKeys } from "../functions";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -22,8 +23,10 @@ export async function GET(request: NextRequest) {
 
   if (res.ok) {
     const json = await res.json();
-    process.env.SPOTIFY_ACCESS_TOKEN = json.access_token;
-    process.env.SPOTIFY_REFRESH_TOKEN = json.refresh_token;
+    await postKeys({
+      spotifyAccessToken: json.access_token,
+      spotifyRefreshToken: json.refresh_token,
+    });
     return NextResponse.json({ callback: "ok" });
   }
 

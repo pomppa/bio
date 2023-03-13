@@ -1,12 +1,11 @@
 import { NextResponse } from "next/server";
+import { getKeys, postKeys } from "../functions";
 
 export async function GET(request: Request) {
+  const keys = await getKeys();
   const urlencoded = new URLSearchParams();
   urlencoded.append("grant_type", "refresh_token");
-  urlencoded.append(
-    "refresh_token",
-    process.env.SPOTIFY_REFRESH_TOKEN as string
-  );
+  urlencoded.append("refresh_token", keys?.spotifyRefreshToken as string);
 
   const res = await fetch("https://accounts.spotify.com/api/token", {
     method: "POST",
@@ -20,10 +19,12 @@ export async function GET(request: Request) {
   });
   if (res.ok) {
     const json = await res.json();
-    process.env.SPOTIFY_ACCESS_TOKEN = json.access_token;
-    console.log("refreshed token");
+    await postKeys({
+      spotifyAccessToken: json.access_token,
+      spotifyRefreshToken: keys?.spotifyRefreshToken,
+    });
     return NextResponse.json({ refreshed: "ok" });
   }
   //todo maybe wise to check why it failed in the first place
-  return NextResponse.json({ refreshed: "failed" });
+  return NextResponse.json({ refreshed: "failed", error: res.status });
 }
