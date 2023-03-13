@@ -6,15 +6,6 @@ export function SignOut() {
 }
 
 export function SignIn() {
-  return (
-    <button
-      onClick={() =>
-        signIn("github", {
-          callbackUrl: "http://localhost:3000/api/spotify/login",
-        })
-      }
-    >
-      Sign in
-    </button>
-  );
+  /* we could maybe something like callbackUrl: `${process.env.NEXT_PUBLIC}/api/spotify/login`*/
+  return <button onClick={() => signIn("github")}>Sign in</button>;
 }

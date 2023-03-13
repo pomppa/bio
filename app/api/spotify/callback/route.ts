@@ -1,4 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
+import { SpotifyTokensForAWS } from "../../../../lib/types";
+import { setSpotifyTokens } from "../../aws/functions";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -22,8 +24,13 @@ export async function GET(request: NextRequest) {
 
   if (res.ok) {
     const json = await res.json();
-    process.env.SPOTIFY_ACCESS_TOKEN = json.access_token;
-    process.env.SPOTIFY_REFRESH_TOKEN = json.refresh_token;
+    const body: SpotifyTokensForAWS = {
+      spotifyAccessToken: json.access_token,
+      spotifyRefreshToken: json.refresh_token,
+    };
+
+    const data = await setSpotifyTokens(body);
+    //return NextResponse.json(data);
     return NextResponse.json({ callback: "ok" });
   }
 
