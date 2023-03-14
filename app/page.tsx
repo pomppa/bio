@@ -40,6 +40,13 @@ export default function Page() {
           linkedin
         </a>
       </pre>
+      <br></br>
+      <br></br>
+      <small>some other pages on this site</small>
+      <br></br>
+      <big>
+        <a href="spotify">spotify</a> - <a href="spotify/top">spotify top</a>
+      </big>
     </>
   );
 }
