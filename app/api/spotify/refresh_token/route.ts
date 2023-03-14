@@ -28,16 +28,8 @@ export async function GET(request: Request) {
       spotifyAccessToken: json.access_token,
       spotifyRefreshToken: keys?.spotifyRefreshToken,
     });
-    const data = {
-      refreshed: "ok",
-      spotifyAccessToken: "",
-      spotifyRefreshToken: "",
-    };
-    if (session?.user) {
-      (data.spotifyAccessToken = json.access_token),
-        (data.spotifyRefreshToken = keys?.spotifyRefreshToken);
-    }
-    return NextResponse.json(data);
+
+    return NextResponse.json({ refreshed: "ok" });
   }
   //todo maybe wise to check why it failed in the first place
   return NextResponse.json({ refreshed: "failed", error: res.status });
