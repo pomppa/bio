@@ -1,7 +1,12 @@
 import { NextResponse } from "next/server";
 import { getKeys, postKeys } from "../functions";
+import { getServerSession } from "next-auth/next";
+
+export const revalidate = 60;
 
 export async function GET(request: Request) {
+  const session = await getServerSession();
+
   const keys = await getKeys();
   const urlencoded = new URLSearchParams();
   urlencoded.append("grant_type", "refresh_token");
@@ -23,7 +28,16 @@ export async function GET(request: Request) {
       spotifyAccessToken: json.access_token,
       spotifyRefreshToken: keys?.spotifyRefreshToken,
     });
-    return NextResponse.json({ refreshed: "ok" });
+    const data = {
+      refreshed: "ok",
+      spotifyAccessToken: "",
+      spotifyRefreshToken: "",
+    };
+    if (session?.user) {
+      (data.spotifyAccessToken = json.access_token),
+        (data.spotifyRefreshToken = keys?.spotifyRefreshToken);
+    }
+    return NextResponse.json(data);
   }
   //todo maybe wise to check why it failed in the first place
   return NextResponse.json({ refreshed: "failed", error: res.status });

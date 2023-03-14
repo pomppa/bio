@@ -27,7 +27,11 @@ export async function GET(request: NextRequest) {
       spotifyAccessToken: json.access_token,
       spotifyRefreshToken: json.refresh_token,
     });
-    return NextResponse.json({ callback: "ok" });
+    return NextResponse.json({
+      callback: "ok",
+      spotifyAccessToken: json.access_token,
+      spotifyRefreshToken: json.refresh_token,
+    });
   }
 
   return NextResponse.json({ callback: "failed" });
