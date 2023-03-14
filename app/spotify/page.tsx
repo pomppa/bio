@@ -1,11 +1,14 @@
 import { PlaylistRootObject } from "../../lib/types";
+import { getKeys } from "../api/spotify/functions";
 
 async function getData() {
+  const keys = await getKeys();
+
   const res = await fetch(
     `https://api.spotify.com/v1/users/${process.env.SPOTIFY_USER_ID}/playlists`,
     {
       headers: {
-        Authorization: "Bearer " + process.env.SPOTIFY_ACCESS_TOKEN,
+        Authorization: "Bearer " + keys?.spotifyAccessToken,
       },
     }
   );
