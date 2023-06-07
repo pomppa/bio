@@ -11,3 +11,11 @@ a {
 .a:visited {
     color: #9d61d6;
 }
+
+::selection {
+    background: #F0F;
+}
+
+.links {
+    margin-top: 4rem;
+}
