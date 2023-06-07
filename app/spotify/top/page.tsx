@@ -1,4 +1,4 @@
-import { TopTracksRootObject } from "../../../lib/topTrackTypes";
+import { TopTracksRootObject } from "../../../types/topTrackTypes";
 import { getKeys } from "../../api/spotify/functions";
 
 async function getData() {

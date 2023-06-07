@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Page() {
   return (
     <>
@@ -20,33 +22,24 @@ export default function Page() {
         </a>
       </pre>
       <pre>
-        when i'm not coding i'm probably just{" "}
+        follow me on{" "}
         <a href="https://www.instagram.com/pomppa/" target="_blank">
-          being
+          instagram
         </a>
       </pre>
       <pre>
-        i enjoy curating some{" "}
-        <a
-          href="https://open.spotify.com/user/relevant/playlists"
-          target="_blank"
-        >
-          playlists
-        </a>
-      </pre>
-      <pre>
-        find me on{" "}
+        connect on{" "}
         <a href="https://www.linkedin.com/in/anakkalatuomas" target="_blank">
           linkedin
         </a>
       </pre>
-      <br></br>
-      <br></br>
-      <small>some other pages on this site</small>
-      <br></br>
-      <big>
-        <a href="spotify">spotify</a> - <a href="spotify/top">spotify top</a>
-      </big>
+      <div className="links">
+        <small>my top tracks</small>
+        <br></br>
+        <big>
+          <Link href="spotify/top">spotify top</Link>
+        </big>
+      </div>
     </>
   );
 }

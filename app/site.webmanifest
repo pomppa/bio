@@ -1,0 +1,23 @@
+{
+    "name": "bio @pomppa",
+    "short_name": "bio @pomppa",
+    "start_url": "/",
+    "display": "standalone",
+    "description": "bio @pomppa",
+    "dir": "auto",
+    "theme_color": "#a6a6ff",
+    "background_color": "#121212",
+    "orientation": "any",
+    "icons": [
+      {
+        "src": "/pub/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/pub/android-chrome-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
