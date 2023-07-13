@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import { Source_Code_Pro } from "next/font/google";
 import "./global.css";
 
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={source_code_pro.className}>
       <body>{children}</body>
+      <Analytics />
     </html>
   );
 }
