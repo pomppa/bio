@@ -21,14 +21,16 @@ export async function GET(request: NextRequest) {
     },
   });
 
-  if (res.ok) {
-    const json = await res.json();
-    await postKeys({
-      spotifyAccessToken: json.access_token,
-      spotifyRefreshToken: json.refresh_token,
-    });
-    return NextResponse.json({ callback: "ok" });
+  if (!res.ok) {
+    return NextResponse.json({ callback: "failed" });
   }
 
-  return NextResponse.json({ callback: "failed" });
+  const json = await res.json();
+
+  await postKeys({
+    spotifyAccessToken: json.access_token,
+    spotifyRefreshToken: json.refresh_token,
+  });
+
+  return NextResponse.json({ callback: "ok" });
 }

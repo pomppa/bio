@@ -1,46 +1,39 @@
-import { PlaylistRootObject } from "../../types/types";
 import { getKeys } from "../api/spotify/functions";
+import { TopTracksRootObject } from "./types";
 
 async function getData() {
   const keys = await getKeys();
 
-  const res = await fetch(
-    "https://api.spotify.com/v1/users/relevant/playlist",
-    {
-      headers: {
-        Authorization: "Bearer " + keys?.spotifyAccessToken,
-      },
-    }
-  );
+  const res = await fetch("https://api.spotify.com/v1/me/top/tracks", {
+    headers: {
+      Authorization: "Bearer " + keys?.spotifyAccessToken,
+    },
+  });
 
   if (!res.ok) return null;
 
-  const json: PlaylistRootObject = await res.json();
-  return json;
+  return await res.json();
 }
 
 export default async function Page() {
-  const data = await getData();
+  const data: TopTracksRootObject = await getData();
 
-  if (!data) {
-    return <>Error</>;
-  }
+  if (!data) return <></>;
 
   return (
     <>
-      <h1>spotify playlists</h1>
-
-      {data.items.map((x) => {
-        return (
-          <>
-            <ul>
-              <li key={x.id}>
-                <a href={x.external_urls.spotify}>{x.name}</a>
-              </li>
-            </ul>
-          </>
-        );
-      })}
+      <h1>spotify top tracks</h1>
+      <ul>
+        {data.items.map((x) => {
+          return (
+            <li key={x.id}>
+              <a href={x.external_urls.spotify} target="_blank">
+                {x.name + " - " + x.artists[0].name}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 }

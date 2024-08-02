@@ -1,21 +1,51 @@
+:root {
+    --bg: #121212;
+    --fg: #c0caf5;
+    --comments: #565f89;
+    --black:  "#15161e";
+    --blue: "#7aa2f7";
+    --dark-blue: #1e2030;
+    --medium-blue: #2ac3de;
+    --bright-blue: #7aa2f7;
+    --light-blue: #a6a6ff;
+    --cyan: "#7dcfff";
+    --green: #9ece6a;
+    --magenta: #ff00ff;
+    --red: #f7768e;
+    --yellow: #e0af68;
+    --orange: #ff9e64;
+}
+
 body {
-    background-color: #121212;
-    color: #ffffff;
-    opacity: 0.87;
+    background-color: var(--bg);
+}
+
+pre {
+    background-color: var(--dark-blue);
+    color: var(--fg);
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.5;
+    position: relative;
+    margin: 20px;
+}
+
+pre code {
+    display: block;
+    white-space: pre;
 }
 
 a {
-    color: #a6a6ff
+    color: var(--light-blue);
 }
 
 .a:visited {
-    color: #9d61d6;
+    color: var(--purple);
 }
 
 ::selection {
-    background: #F0F;
+    background: var(--magenta);
 }
 
-.links {
-    margin-top: 4rem;
-}

@@ -1,18 +1,14 @@
 # bio
-a personal website
-https://pomppa.xyz/
+a personal website https://pomppa.xyz/
 
-## key features
-built with nextjs 13 (experimental appDir)
+## about
+for testing out ideas and learning new things
 
-deployed on vercel
+nextauth v5
 
-nextauth + github as a provider for protecting routes and enabling admin access
-
-spotify integration to fetch some private scope spotify data
+spotify integration to publish some private scope spotify data
 
 external lambda function for cron-like operations
 
-serverless mongodb as a persistent storage
+serverless mongodb
 
-that's it folks 

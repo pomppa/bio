@@ -1,4 +1,5 @@
 import { MongoClient, ServerApiVersion, ObjectId } from "mongodb";
+
 const uri = process.env.MONGO_CONNECTION_STRING as string;
 const client = new MongoClient(uri, {
   serverApi: ServerApiVersion.v1,
@@ -6,7 +7,6 @@ const client = new MongoClient(uri, {
 
 client.connect();
 
-// todo objectid workaround
 export async function getKeys() {
   const db = client.db(process.env.MONGO_DB_NAME);
 
