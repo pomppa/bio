@@ -1,18 +1,9 @@
-import { MongoClient, ServerApiVersion, ObjectId } from "mongodb";
-
-const uri = process.env.MONGO_CONNECTION_STRING;
-
-if (!uri) {
-  throw new Error('MONGO_CONNECTION_STRING is not defined');
-}
-
-const client = new MongoClient(uri, {
-  serverApi: ServerApiVersion.v1,
-});
-
-client.connect();
+import { getClient } from './mongo'
+import { ObjectId } from 'mongodb';
 
 export async function getKeys() {
+  const client = await getClient();
+
   const db = client.db(process.env.MONGO_DB_NAME);
 
   const keys = await db.collection("spotify").findOne({
@@ -23,6 +14,8 @@ export async function getKeys() {
 }
 
 export async function postKeys(data) {
+  const client = await getClient();
+
   const db = client.db(process.env.MONGO_DB_NAME);
 
   const res = await db
